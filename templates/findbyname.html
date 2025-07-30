@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Content Table</title>
+    <style>
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #b1cbee; /* Light blue on hover */
+        }
+
+    </style>
+</head>
+<body style="background-color: aliceblue; background-size: cover; background-repeat: no-repeat;">
+    <div style="position: absolute; top: 10px; right: 20px; font-weight: bold;">
+    Logged in as: {{ session['username'] }} |
+    <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
+</div>
+
+    <h2 style="text-align:center; font-size: 40px;">Content Details</h2>
+    
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Content</th>
+            <th>Company</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Notice Period</th>
+            <th>Salary</th>
+        </tr>
+        {% for user in tasks %}
+        <tr>
+            <td>{{ user['_id'] }}</td>
+            <td>{{ user['content'] }}</td>
+            <td>{{ user['company'] }}</td>
+            <td>{{ user['email'] }}</td>
+            <td>{{ user['name'] }}</td>
+            <td>{{ user['notice_period'] }}</td>
+            <td>{{ user['salary'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+<div style="text-align: center; margin-top: 20px;">
+    <a href="/login/all" style="text-decoration: none;">
+        <button style="padding: 10px 20px; font-size: 16px;">Back to Home</button>
+    </a>
+</div>
+</body>
+</html>

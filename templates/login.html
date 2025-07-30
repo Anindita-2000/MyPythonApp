@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body style="background-image: url('/static/images/login_image1.png'); background-size: cover; background-repeat: no-repeat;">
+    <div style="text-align:center;font-size: 30px; margin-top: 200px; justify-content: center;align-items: center;">
+    <h2>Login</h2>
+    <form method="POST">
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+        <input type="submit" value="Login" size="60px">
+    </form>
+    </div>
+    
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

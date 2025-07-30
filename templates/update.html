@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" font-family="Arial, sans-serif" font size="20px" font color="black">
+    <title>Update Content</title>
+    <body style="background-color: aliceblue; background-size: cover; background-repeat: no-repeat;">
+    <h1>Update Content</h1>
+    <!--html file to update data-->
+    <div style="position: absolute; top: 10px; right: 20px; font-weight: bold;">
+    Logged in as: {{ session['username'] }} |
+    <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
+</div>
+
+    <form style="font-size: 20px;" action="/update/{{ task._id }}" method="post" onsubmit="return confirm('Are you sure you want to update this content?');">
+        <label>Id:</label><br><input type="text" name="_id" placeholder="{{ task._id }}"><br><br>
+        <label></label>Content:</label><br><input type="text" name="content" placeholder="{{ task.content }}" required><br><br>
+        <label>Company:</label><br><input type="text" name="company" placeholder="{{ task.company }}" required><br><br>
+        <label>Email:</label><br><input type="text" name="email" placeholder="{{ task.email }}" required><br><br>
+        <label>Name:</label><br><input type="text" name="name" placeholder="{{ task.name }}" required><br><br>
+        <label>Notice Period:</label><br><input type="integer" name="notice_period" placeholder="{{ task.notice_period }}" required><br><br>
+        <label></label>Salary:</label><br><input type="integer" name="salary" placeholder="{{ task.salary }}" required><br><br>
+        <button style="color: green; font-size: 25px;" type="submit"><b>Update Content</b></button>
+    </form>
+</body>
+</html>
