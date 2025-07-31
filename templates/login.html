@@ -7,14 +7,20 @@
     <div style="text-align:center;font-size: 30px; margin-top: 200px; justify-content: center;align-items: center;">
     <h2>Login</h2>
     <form method="POST">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-        <input type="submit" value="Login" size="60px">
+        <div>
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter your username" style="width: 300px; height: 30px;" required>
+        </div><br>
+        <div>
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter your password" style="width: 300px; height: 30px;" required>
+        </div><br>
+        <div>
+        <input type="submit" value="Login" style="width: 100px; height: 30px;font-size: 20px;">
+        </div>
+        <a href="/forgot-password" style="text-decoration: none; font-size: 20px;">Forgot Password?</a>
     </form>
     </div>
-    
     {% if error %}
         <p style="color:red;">{{ error }}</p>
     {% endif %}
