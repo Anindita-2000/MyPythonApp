@@ -90,6 +90,25 @@ tr:hover {
     {% endif %}
 </div>
 
+<!-- Download as Excel Button -->
+<div style="text-align:center; margin-top: 20px;">
+    <form action="{{ url_for('download_tasks') }}" method="get">
+        <button type="submit" style="padding: 8px 16px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            📥 Download as Excel
+        </button>
+    </form>
+</div>
+
+<!-- Download as PDF Button -->
+<div style="text-align:center; margin-top: 10px;">
+    <form action="{{ url_for('download_tasks_pdf') }}" method="get">
+        <button type="submit" style="padding: 8px 16px; font-size: 16px; background-color: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            📄 Download as PDF
+        </button>
+    </form>
+</div>
+</div>
+
 <!-- Sorting   -->
 <script>
     let sortDirections = {};
