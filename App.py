@@ -6,7 +6,7 @@ App = Flask(__name__)
 App.secret_key = 'your_secret_key'  # Required for session management
 
 # MongoDB connection
-uri = "mongodb+srv://Anindita_Das:Ani2000@myapp.iqxwi6f.mongodb.net/"
+uri = "mongodb+srv://**Anindita_Das**:**Ani2000**@myapp.iqxwi6f.mongodb.net/"
 client = MongoClient(uri)
 db = client["taskdb"]
 tasks = db["tasks"]
@@ -18,10 +18,12 @@ USERS = {
     'moderator': {'password': 'pass1234', 'role': 'moderator'}
 }
 
+# For home page routing
 @App.route('/')
 def home():
     return redirect(url_for('login'))
 
+#For login page routing
 @App.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -37,11 +39,13 @@ def login():
             error = 'Invalid Credentials. Please try again.'
     return render_template('login.html', error=error)
 
+# For logout page routing
 @App.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
+#For viewing all tasks
 @App.route("/login/all", methods=["GET", "POST"])
 def find_all():
     if 'role' not in session:
@@ -60,6 +64,7 @@ def find_all():
     total_pages = (total_tasks + per_page - 1) // per_page
     return render_template("index.html", all_tasks=all_tasks, page=page, total_pages=total_pages, sort_order=sort_order, username=session.get('username'), role=session.get('role'))
 
+# For adding new content
 @App.route("/add", methods=["GET", "POST"])
 def add_task():
     if session.get('role') != 'admin':
@@ -78,6 +83,7 @@ def add_task():
         return render_template("success.html")
     return render_template("add.html", tasks=tasks)
 
+# For finding a specific content by id
 @App.route("/find/<task_id>", methods=["GET", "POST"])
 def find_task(task_id):
     if 'role' not in session:
@@ -85,6 +91,7 @@ def find_task(task_id):
     user = tasks.find_one({"_id": ObjectId(task_id)})
     return render_template("find.html", tasks=[user])
 
+# For finding a specific content by name
 @App.route("/login/findbyname", methods=["GET", "POST"])
 def find_task_by_name():
     if session.get('role') not in ['admin', 'moderator']:
@@ -95,6 +102,7 @@ def find_task_by_name():
         return render_template("findbyname.html", tasks=user)
     return redirect("/login")
 
+# For deleting a specific content by id
 @App.route("/delete/<task_id>", methods=["POST", "DELETE"])
 def delete_task(task_id):
     if session.get('role') != 'admin':
@@ -102,6 +110,7 @@ def delete_task(task_id):
     tasks.delete_one({"_id": ObjectId(task_id)})
     return redirect("/login/all")
 
+# For updating a specific content by id
 @App.route("/update/<task_id>", methods=["POST", "GET", "PUT"])
 def update_task(task_id):
     if session.get('role') != 'admin':
