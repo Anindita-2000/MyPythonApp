@@ -4,24 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Content</title>
-<body style="background-color: aliceblue;background-size: cover;background-repeat: no-repeat;">
-    <h1>Add New Content</h1>
-    <div style="position: absolute; top: 10px; right: 20px; font-weight: bold;">
-    Logged in as: {{ session['username'] }} |
-    <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
-</div>
+    <style>
+        body {
+            background-color: aliceblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
 
-    <form style="font-size: 20px;" action="/add" method="post" onsubmit="return screen.confirm('Data added successfully')">
-        <!--html file to add data-->
-       <label>Id:</label><br><input type="text" name="_id" placeholder="{{tasks._id}}"><br><br>
-        <label></label>Content:</label><br><input type="text" name="content" placeholder="Enter Content" required><br><br>
-        <label>Company:</label><br><input type="text" name="company" placeholder="Enter Company" required><br><br>
-        <label>Email:</label><br><input type="text" name="email" placeholder="Enter Email" required><br><br>
-        <label>Name:</label><br><input type="text" name="name" placeholder="Enter Name" required><br><br>
-        <label>Notice Period:</label><br><input type="integer" name="notice_period" placeholder="Enter Notice Period" required><br><br>
-        <label>Salary:</label><br><input type="integer" name="salary" placeholder="Enter Salary" required><br><br>
-        <button style="color: green; font-size: 25px;" type="submit" ><b>Add Content</b></button>
-    </form>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 100px auto;
+            font-size: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 150px;
+            text-align: left;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        .submit-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-btn button {
+            color: green;
+            font-size: 22px;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
+<body>
+    <h1>Add New Content</h1>
+    <div class="top-right">
+        Logged in as: {{ session['username'] }} |
+        <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
+    </div>
+
+    <form class="form-container" action="/add" method="post" onsubmit="return confirm('Data added successfully')">
+        <div class="form-group">
+            <label for="_id">Id:</label>
+            <input type="text" name="_id" placeholder="{{tasks._id}}">
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <input type="text" name="content" placeholder="Enter Content" required>
+        </div>
+        <div class="form-group">
+            <label for="company">Company:</label>
+            <input type="text" name="company" placeholder="Enter Company" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Enter Name" required>
+        </div>
+        <div class="form-group">
+            <label for="notice_period">Notice Period:</label>
+            <input type="number" name="notice_period" placeholder="Enter Notice Period" required>
+        </div>
+        <div class="form-group">
+            <label for="salary">Salary:</label>
+            <input type="number" name="salary" placeholder="Enter Salary" required>
+        </div>
+        <div class="submit-btn">
+            <button type="submit"><b>Add Content</b></button>
+        </div>
+    </form>
 </body>
 </html>
