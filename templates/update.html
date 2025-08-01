@@ -2,25 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" font-family="Arial, sans-serif" font size="20px" font color="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Content</title>
-    <body style="background-color: aliceblue; background-size: cover; background-repeat: no-repeat;">
-    <h1>Update Content</h1>
-    <!--html file to update data-->
-    <div style="position: absolute; top: 10px; right: 20px; font-weight: bold;">
-    Logged in as: {{ session['username'] }} |
-    <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
-</div>
+    <style>
+        body {
+            background-color: aliceblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
 
-    <form style="font-size: 20px;" action="/update/{{ task._id }}" method="post" onsubmit="return confirm('Are you sure you want to update this content?');">
-        <label>Id:</label><br><input type="text" name="_id" placeholder="{{ task._id }}"><br><br>
-        <label></label>Content:</label><br><input type="text" name="content" placeholder="{{ task.content }}" required><br><br>
-        <label>Company:</label><br><input type="text" name="company" placeholder="{{ task.company }}" required><br><br>
-        <label>Email:</label><br><input type="text" name="email" placeholder="{{ task.email }}" required><br><br>
-        <label>Name:</label><br><input type="text" name="name" placeholder="{{ task.name }}" required><br><br>
-        <label>Notice Period:</label><br><input type="integer" name="notice_period" placeholder="{{ task.notice_period }}" required><br><br>
-        <label></label>Salary:</label><br><input type="integer" name="salary" placeholder="{{ task.salary }}" required><br><br>
-        <button style="color: green; font-size: 25px;" type="submit"><b>Update Content</b></button>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-weight: bold;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 15px 20px;
+            width: 50%;
+            margin: 100px auto;
+        }
+
+        .form-container label {
+            text-align: left;
+            padding-top: 5px;
+        }
+
+        .form-container input {
+            padding: 8px;
+            width: 100%;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .submit-btn button {
+            color: green;
+            font-size: 22px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Content</h1>
+    <div class="top-right">
+        Logged in as: {{ session['username'] }} |
+        <a href="/logout" style="color: red; text-decoration: none;">Logout</a>
+    </div>
+
+    <form class="form-container" action="/update/{{ task._id }}" method="post" onsubmit="return confirm('Are you sure you want to update this content?');">
+        <label for="_id">Id:</label>
+        <input type="text" name="_id" placeholder="{{ task._id }}">
+
+        <label for="content">Content:</label>
+        <input type="text" name="content" placeholder="{{ task.content }}" required>
+
+        <label for="company">Company:</label>
+        <input type="text" name="company" placeholder="{{ task.company }}" required>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="{{ task.email }}" required>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="{{ task.name }}" required>
+
+        <label for="notice_period">Notice Period:</label>
+        <input type="number" name="notice_period" placeholder="{{ task.notice_period }}" required>
+
+        <label for="salary">Salary:</label>
+        <input type="number" name="salary" placeholder="{{ task.salary }}" required>
+
+        <div class="submit-btn">
+            <button type="submit"><b>Update Content</b></button>
+        </div>
     </form>
 </body>
 </html>
